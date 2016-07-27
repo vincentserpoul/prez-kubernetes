@@ -1,7 +1,7 @@
 {
-  "name": "spectacle-boilerplate",
+  "name": "kuberneprez",
   "version": "1.0.1",
-  "description": "ReactJS Powered Presentation Framework",
+  "description": "kuberneprez",
   "main": "lib/index.js",
   "scripts": {
     "clean": "rimraf dist",

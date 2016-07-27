@@ -45,6 +45,7 @@ const images = {
   grafanaLogo: require("../assets/grafanaLogo.svg"),
   influxdbLogo: require("../assets/influxdbLogo.svg"),
   mysqlLogo: require("../assets/mysqlLogo.svg"),
+  reactLogo: require("../assets/reactLogo.svg"),
   dockerLogo: require("../assets/dockerLogo.svg"),
   step1: require("../assets/1-createcluster.png"),
   step2: require("../assets/2-uploadyourimages.png"),
@@ -58,7 +59,8 @@ const images = {
   kubestack1: require("../assets/kubeStack1.png"),
   kubestack2: require("../assets/kubeStack2.png"),
   brokenheart: require("../assets/Broken_heart.svg"),
-  kubend: require("../assets/kubernetesend.png")
+  kubend: require("../assets/kubernetesend.png"),
+  horrified: require("../assets/horrifiedcat.jpg")
 };
 
 preloader(images);
@@ -73,6 +75,17 @@ export default class Presentation extends React.Component {
     return (
       <Spectacle theme={theme}>
         <Deck transition={["zoom", "slide"]} transitionDuration={500}>
+          <Slide transition={["slide"]} bgImage={images.reactLogo} bgColor="#ff4081">
+            <Heading size={2} fit caps textColor="black">
+              warning
+            </Heading>
+            <Heading size={2} fit caps textColor="primary">
+              this presentation was entirely written in javascript
+            </Heading>
+            <Heading size={3} fit textColor="secondary">
+              thanks to react and spectacle (formidable)
+            </Heading>
+          </Slide>
           <Slide transition={["zoom"]} bgColor="primary">
             <Image width="20%" src={images.kubernetes} /><br />
             <Image width="50%" src={images.kubernetesName} />
@@ -252,13 +265,19 @@ export default class Presentation extends React.Component {
               <Cite>Vincent Serpoul, December 2015</Cite>
             </BlockQuote>
           </Slide>
-          <Slide transition={["spin"]} align="flex-start" bgColor="#4d79ff">
-            <BlockQuote>
-              <Quote textColor="black">Maybe not always :)</Quote>
-              <Cite>Vincent Serpoul, June 2015</Cite>
-            </BlockQuote>
-            <Image width="80%" margin="15px 15px 0 0" src={images.kubestack1} />
-            <Image width="80%" margin="15px 15px 0 0" src={images.kubestack2} />
+          <Slide transition={["spin"]} align="flex-start" bgImage={images.horrified} bgDarken={0.5}>
+            <Appear fid="1">
+              <BlockQuote>
+                <Quote textColor="tertiary">Maybe not always :)</Quote>
+                <Cite>Vincent Serpoul, June 2015</Cite>
+              </BlockQuote>
+            </Appear>
+            <Appear fid="2">
+              <Image width="80%" margin="15px 15px 0 0" src={images.kubestack1} />
+            </Appear>
+            <Appear fid="3">
+              <Image width="80%" margin="15px 15px 0 0" src={images.kubestack2} />
+            </Appear>
           </Slide>
           <Slide transition={["zoom"]} bgImage={images.brokenheart} bgDarken={0.5}>
             <Heading size={1} fill caps textColor="secondary">
@@ -270,7 +289,9 @@ export default class Presentation extends React.Component {
             </List>
           </Slide>
           <Slide transition={["fade"]} bgImage={images.kubend} bgDarken={0.3}>
-            <Heading size={1} fill caps textColor="secondary">Questions?</Heading>
+            <Heading size={1} fill caps textColor="primary">the end</Heading>
+            <Heading size={1} fill caps textColor="secondary">questions?</Heading>
+            <Heading size={1} fit caps textColor="tertiary">you can find the prez here: kuberneprez.surge.sh</Heading>
           </Slide>
         </Deck>
       </Spectacle>
