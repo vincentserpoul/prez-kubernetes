@@ -1,0 +1,10 @@
+$ kubectl get po
+NAME                                READY     STATUS    RESTARTS   AGE
+grafana-1016214839-hdy47            1/1       Running   0          32d
+influxdb-1943738984-hkq3r           1/1       Running   0          32d
+nutsbet-api-1403150082-ss4yy        1/1       Running   0          22d
+nutsbet-ticker-3114295867-zaauw     1/1       Running   0          22d
+nutsnginx-3747513354-8x2qd          1/1       Running   0          22d
+nutsphpfpm7-3835519478-qngx0        1/1       Running   0          22d
+nutsphpfpm7crons-1096049414-06ks5   1/1       Running   0          22d
+redis-go-2351231257-yjrf7           1/1       Running   41         22d

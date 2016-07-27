@@ -1,0 +1,11 @@
+$ kubectl get svc
+NAME               CLUSTER-IP       EXTERNAL-IP       PORT(S)                      AGE
+grafana            10.119.244.118   23.123.123.27     3000/TCP                     32d
+influxdb           10.119.247.182   23.123.123.26     8083/TCP,8086/TCP,8088/TCP   71d
+kubernetes         10.119.240.1     <none>            443/TCP                      71d
+nutsbet-api        10.119.243.41    23.123.123.25     80/TCP                       71d
+nutsbet-ticker     10.119.246.13    <none>            80/TCP                       71d
+nutsnginx          10.119.249.51    23.123.123.24     80/TCP,443/TCP               71d
+nutsphpfpm7        10.119.241.223   <none>            9000/TCP                     71d
+nutsphpfpm7crons   10.119.240.131   <none>            9000/TCP                     71d
+redis-go           10.119.246.32    23.123.123.23     6379/TCP                     71d

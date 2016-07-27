@@ -1,0 +1,11 @@
+apiVersion: extensions/v1beta1
+kind: Service
+metadata:
+  labels: {name: redis-go}
+  name: redis-go
+spec:
+  ports:
+  - {port: 6379}
+  selector: {name: redis-go}
+  type: LoadBalancer
+  loadBalancerIP: 23.123.123.23
