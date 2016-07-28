@@ -60,7 +60,10 @@ const images = {
   kubestack2: require("../assets/kubeStack2.png"),
   brokenheart: require("../assets/Broken_heart.svg"),
   kubend: require("../assets/kubernetesend.png"),
-  horrified: require("../assets/horrifiedcat.jpg")
+  horrified: require("../assets/horrifiedcat.jpg"),
+  magicat: require("../assets/space-cat.jpg"),
+  calmcat: require("../assets/calmcat.jpg"),
+  magic: require("../assets/magic.png")
 };
 
 preloader(images);
@@ -75,7 +78,7 @@ export default class Presentation extends React.Component {
     return (
       <Spectacle theme={theme}>
         <Deck transition={["zoom", "slide"]} transitionDuration={500}>
-          <Slide transition={["slide"]} bgImage={images.reactLogo} bgColor="#ff4081">
+          <Slide transition={["fade", "zoom"]} bgImage={images.reactLogo} bgColor="#ff4081">
             <Heading size={2} fit caps textColor="black">
               warning
             </Heading>
@@ -122,7 +125,7 @@ export default class Presentation extends React.Component {
               <Image height="150px" margin="15px 15px 0 0" src={images.mysqlLogo} />
             </Appear>
           </Slide>
-          <Slide transition={["zoom", "fade"]} bgImage={images.step1} bgDarken={0.5}>
+          <Slide transition={["zoom", "fade"]} bgImage={images.step1} bgDarken={0.2}>
             <Heading size={1} fit caps textColor="white">
               Step1 - create the cluster
             </Heading>
@@ -137,22 +140,22 @@ export default class Presentation extends React.Component {
               </Heading>
             </Appear>
             <Appear fid="3">
-              <CodePane>
+              <CodePane textSize={25} >
                 gcloud config set compute/zone asia-east1-c
               </CodePane>
             </Appear>
             <Appear fid="4">
-              <CodePane>
+              <CodePane textSize={25} >
                 gcloud container clusters get-credentials yourcluster
               </CodePane>
             </Appear>
           </Slide>
-          <Slide transition={["zoom", "fade"]} bgImage={images.step2} bgDarken={0.5}>
+          <Slide transition={["zoom", "fade"]} bgImage={images.step2} bgDarken={0.2}>
             <Heading size={1} fit caps textColor="white">
               Step2 - upload your custom docker images
             </Heading>
             <Appear fid="1">
-              <CodePane textSize={20} textColor="quaternary" textColor="black">
+              <CodePane textSize={25} textColor="quaternary" textColor="black">
                 gcloud docker -- push eu.gcr.io/yourproject/yourimage:vX
               </CodePane>
             </Appear>
@@ -238,6 +241,48 @@ export default class Presentation extends React.Component {
                 lang="shell"
                 source={require("raw!../assets/runningpods.cm")}
                 margin="20px auto"
+              />
+            </Appear>
+          </Slide>
+          <Slide transition={["spin"]} bgImage={images.calmcat} bgDarken={0.5}>
+            <Heading size={1} fill caps textColor="tertiary">
+              Scaling magic
+            </Heading>
+            <Appear fid="1">
+              <CodePane
+                lang="shell"
+                source={require("raw!../assets/scaling_1.cm")}
+                margin="20px auto"
+              />
+            </Appear>
+          </Slide>
+          <Slide transition={["spin"]} bgImage={images.magic} bgDarken={0.5} align="flex-start">
+            <Appear fid="1">
+              <CodePane
+                lang="shell"
+                source={require("raw!../assets/autoscaler.yaml")}
+                margin="20px auto"
+              />
+            </Appear>
+            <Appear fid="2">
+              <CodePane
+                lang="shell"
+                source={require("raw!../assets/scaling_1b.cm")}
+                margin="20px auto"
+              />
+            </Appear>
+            <Appear fid="4">
+              <CodePane textSize={25} >
+                $ siege -d10 -c50 https://XXX
+              </CodePane>
+            </Appear>
+          </Slide>
+          <Slide transition={["scale"]} bgImage={images.magicat} bgDarken={0.5} align="flex-start">
+            <Appear fid="1">
+              <CodePane
+                textSize="10px"
+                lang="shell"
+                source={require("raw!../assets/scaling_2.cm")}
               />
             </Appear>
           </Slide>

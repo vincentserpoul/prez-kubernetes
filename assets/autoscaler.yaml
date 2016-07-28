@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: nutsphpfpm7
+  namespace: default
+spec:
+  scaleRef:
+    kind: Deployment
+    name: nutsphpfpm7
+    subresource: scale
+  minReplicas: 1
+  maxReplicas: 10
+  cpuUtilization:
+    targetPercentage: 1

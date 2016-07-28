@@ -1,0 +1,36 @@
+$ kubectl get nodes --watch
+NAME                                         STATUS    AGE
+gke-YOURCLUSTER-qa-default-pool-22aa7b7a-s2vk   Ready     40m
+...
+gke-YOURCLUSTER-qa-default-pool-22aa7b7a-lwy2   Ready     1m
+gke-YOURCLUSTER-qa-default-pool-22aa7b7a-s2vk   Ready     45m
+
+$ kubectl get pods --watch
+NAME                                READY     STATUS    RESTARTS   AGE
+grafana-1016214839-271y4            1/1       Running   0          43m
+influxdb-1943738984-5ijha           1/1       Running   0          43m
+nutsbet-api-1403150082-12iy6        1/1       Running   0          43m
+nutsbet-ticker-3114295867-drk45     1/1       Running   0          43m
+nutsnginx-3747513354-ak3de          1/1       Running   4          43m
+nutsphpfpm7-3835519478-9haca        1/1       Running   0          43m
+nutsphpfpm7crons-1096049414-jq0at   1/1       Running   0          43m
+redis-go-2351231257-cxu1x           1/1       Running   0          43m
+...
+NAME                                READY     STATUS    RESTARTS   AGE
+grafana-1016214839-271y4            1/1       Running   0          49m
+influxdb-1943738984-5ijha           1/1       Running   0          49m
+nutsbet-api-1403150082-12iy6        1/1       Running   0          49m
+nutsbet-ticker-3114295867-drk45     1/1       Running   0          49m
+nutsnginx-3747513354-ak3de          1/1       Running   4          49m
+nutsphpfpm7-3835519478-2l025        1/1       Running   0          5m
+nutsphpfpm7-3835519478-3j2p1        1/1       Running   0          5m
+nutsphpfpm7-3835519478-563ss        1/1       Running   0          5m
+nutsphpfpm7-3835519478-6j375        1/1       Running   0          5m
+nutsphpfpm7-3835519478-9haca        1/1       Running   0          49m
+nutsphpfpm7-3835519478-b2h66        1/1       Running   0          5m
+nutsphpfpm7-3835519478-h8ydf        1/1       Running   0          5m
+nutsphpfpm7-3835519478-hmb28        1/1       Running   0          5m
+nutsphpfpm7-3835519478-odrkw        1/1       Running   0          5m
+nutsphpfpm7-3835519478-z2j4t        1/1       Running   0          5m
+nutsphpfpm7crons-1096049414-jq0at   1/1       Running   0          49m
+redis-go-2351231257-cxu1x           1/1       Running   0          49m
