@@ -1,6 +1,6 @@
 $ kubectl apply -f nutsphpfpm7_a.yaml
-horizontalpodautoscaler "nutsphpfpm7" created
+horizontalpodautoscaler "nutsphpfpm7_a" created
 
 $ kubectl get hpa
 NAME          REFERENCE                      TARGET    CURRENT   MINPODS   MAXPODS   AGE
-nutsphpfpm7   Deployment/nutsphpfpm7/scale   1%        0%        1         10        25s
+nutsphpfpm7_a Deployment/nutsphpfpm7/scale   1%        0%        1         10        25s

@@ -78,56 +78,72 @@ export default class Presentation extends React.Component {
     return (
       <Spectacle theme={theme}>
         <Deck transition={["zoom", "slide"]} transitionDuration={500}>
-          <Slide transition={["fade", "zoom"]} bgImage={images.reactLogo} bgColor="#ff4081">
+          <Slide
+            transition={["fade", "zoom"]}
+            bgImage={images.reactLogo}
+            bgSize="20%"
+            bgRepeat="no-repeat"
+            bgPosition="50% 10%"
+            bgColor="#ff4081"
+          >
             <Heading size={2} fit caps textColor="black">
               warning
             </Heading>
-            <Heading size={2} fit caps textColor="primary">
-              this presentation was entirely written in javascript
-            </Heading>
-            <Heading size={3} fit textColor="secondary">
-              thanks to react and spectacle (formidable)
-            </Heading>
+            <Appear fid="1">
+              <Heading size={2} fit caps textColor="primary">
+                this presentation was entirely written in javascript
+              </Heading>
+            </Appear>
+            <Appear fid="2">
+              <Heading size={3} fit textColor="secondary">
+                thanks to reactjs and spectacle (formidable)
+              </Heading>
+            </Appear>
+            <Appear fid="2">
+              <Heading textSize="1em" fill textColor="tertiary">
+                ...there might be bugs (:
+              </Heading>
+            </Appear>
           </Slide>
           <Slide transition={["zoom"]} bgColor="primary">
             <Image width="20%" src={images.kubernetes} /><br />
             <Image width="50%" src={images.kubernetesName} />
             <Heading size={2} fill caps textColor="black">
-              irl
+              a tale of 4 months
             </Heading>
             <Heading size={3} fill textColor="secondary">
-              with <Image width="8%" margin="0" src={images.GKELogo} />
+              IRL with <Image width="8%" margin="0" src={images.GKELogo} />
             </Heading>
           </Slide>
-          <Slide transition={["zoom", "slide", "fade"]} bgColor="secondary" align="flex-start">
-            <Heading size={1} fit caps lineHeight={1} textColor="black">
+          <Slide transition={["zoom", "slide", "fade"]} bgColor="secondary">
+            <Heading size={1} fill caps textColor="black">
               the stack
             </Heading>
             <Appear fid="1">
-              <Image height="150px" margin="15px 15px 0 0" src={images.nginxLogo} />
+              <Image height="3em" margin="15px 15px 0 0" src={images.nginxLogo} />
             </Appear>
             <Appear fid="2">
-              <Image height="150px" margin="15px 15px 0 0" src={images.golangLogo} />
+              <Image height="3em" margin="15px 15px 0 0" src={images.golangLogo} />
             </Appear>
             <Appear fid="3">
-              <Image height="150px" margin="15px 15px 0 0" src={images.phpLogo} />
+              <Image height="3em" margin="15px 15px 0 0" src={images.phpLogo} />
             </Appear>
             <Appear fid="4">
-              <Image height="150px" margin="15px 15px 0 0" src={images.grafanaLogo} />
+              <Image height="3em" margin="15px 15px 0 0" src={images.grafanaLogo} />
             </Appear>
             <Appear fid="5">
-              <Image height="150px" margin="15px 15px 0 0" src={images.influxdbLogo} />
+              <Image height="3em" margin="15px 15px 0 0" src={images.influxdbLogo} />
             </Appear>
             <Appear fid="6">
-              <Image height="150px" margin="15px 15px 0 0" src={images.redisLogo} />
+              <Image height="3em" margin="15px 15px 0 0" src={images.redisLogo} />
             </Appear>
             <Appear fid="7">
-              <Image height="150px" margin="15px 15px 0 0" src={images.mysqlLogo} />
+              <Image height="3em" margin="15px 15px 0 0" src={images.mysqlLogo} />
             </Appear>
           </Slide>
-          <Slide transition={["zoom", "fade"]} bgImage={images.step1} bgDarken={0.2}>
-            <Heading size={1} fit caps textColor="white">
-              Step1 - create the cluster
+          <Slide transition={["zoom", "fade"]} bgImage={images.step1} bgPosition="0 0" bgRepeat="no-repeat" bgDarken={0.4}>
+            <Heading fit caps textColor="white">
+              Step 1 - create the cluster
             </Heading>
             <Appear fid="1">
               <Heading fit textColor="black">
@@ -140,22 +156,22 @@ export default class Presentation extends React.Component {
               </Heading>
             </Appear>
             <Appear fid="3">
-              <CodePane textSize={25} >
+              <CodePane lang="powershell" textSize="0.6em" margin="5px 0 0 0">
                 gcloud config set compute/zone asia-east1-c
               </CodePane>
             </Appear>
             <Appear fid="4">
-              <CodePane textSize={25} >
-                gcloud container clusters get-credentials yourcluster
+              <CodePane lang="powershell" textSize="0.6em" margin="5px 0 0 0">
+                gcloud container clusters get-credentials YOURCLUSTER
               </CodePane>
             </Appear>
           </Slide>
-          <Slide transition={["zoom", "fade"]} bgImage={images.step2} bgDarken={0.2}>
-            <Heading size={1} fit caps textColor="white">
-              Step2 - upload your custom docker images
+          <Slide transition={["zoom", "fade"]} bgImage={images.step2} bgPosition="0 0" bgRepeat="no-repeat" bgDarken={0.4}>
+            <Heading fit caps textColor="white">
+              Step 2 - upload your custom docker images
             </Heading>
             <Appear fid="1">
-              <CodePane textSize={25} textColor="quaternary" textColor="black">
+              <CodePane lang="powershell" textSize="0.6em" margin="5px 0 0 0">
                 gcloud docker -- push eu.gcr.io/yourproject/yourimage:vX
               </CodePane>
             </Appear>
@@ -181,78 +197,74 @@ export default class Presentation extends React.Component {
               <CodePane
                 lang="yaml"
                 source={require("raw!../assets/redis-go.yaml")}
-                margin="20px auto"
               />
             </Appear>
             <Appear fid="3">
-              <CodePane textSize={20} textColor="quaternary" textColor="black">
+              <CodePane lang="powershell" textSize="0.6em" margin="5px 0 0 0">
                 kubectl apply -f redis-go.yaml
               </CodePane>
             </Appear>
           </Slide>
-          <Slide transition={["fade", "zoom"]} bgImage={images.redisLogo} bgDarken={0.5} bgColor="secondary" align="flex-start">
+          <Slide transition={["fade", "zoom"]} bgImage={images.redisLogo} bgDarken={0.5} bgColor="secondary">
             <Heading size={1} fit caps textColor="secondary">
               Step4 - Create your deployment
-            </Heading>
-            <Heading textSize="50" fill textColor="tertiary">
-              example: still redis
             </Heading>
             <Appear fid="1">
               <CodePane
                 lang="yaml"
                 source={require("raw!../assets/redis-go-d.yaml")}
-                textSize="8px"
+                textSize="0.3em"
               />
             </Appear>
             <Appear fid="2">
-              <CodePane textSize={20} textColor="quaternary" textColor="black">
+              <CodePane lang="powershell" textSize="0.5em" margin="5px 0 0 0">
                 gcloud compute disks create redis-go-disk --size 10GB
               </CodePane>
             </Appear>
             <Appear fid="3">
-              <CodePane textSize={20} textColor="quaternary" textColor="black">
+              <CodePane lang="powershell" textSize="0.5em" margin="5px 0 0 0">
                 kubectl apply -f redis-go_d.yaml
               </CodePane>
             </Appear>
             <Appear fid="3">
-              <Heading textSize="50" fit textColor="tertiary">
-                Access from other pods through the simple "redis-go" tag
+              <Heading fit textColor="tertiary">
+                Access from other pods through the simple "redis-go" name
               </Heading>
             </Appear>
           </Slide>
           <Slide transition={["spin"]} bgImage={images.kubernetes} bgDarken={0.75} bgColor="primary">
-            <Heading size={1} fit caps textColor="secondary">
+            <Heading fit caps textColor="secondary">
               Services running
             </Heading>
             <Appear fid="1">
               <CodePane
-                lang="shell"
+                lang="powershell"
                 source={require("raw!../assets/runningservices.cm")}
-                textSize="20px"
+                textSize="0.4em"
               />
             </Appear>
           </Slide>
           <Slide transition={["spin"]} bgImage={images.dockerLogo} bgDarken={0.75} bgColor="secondary">
-            <Heading size={1} fit caps textColor="tertiary">
+            <Heading fit caps textColor="secondary">
               Pods running
             </Heading>
-            <Appear fid="2">
+            <Appear fid="1">
               <CodePane
-                lang="shell"
+                lang="powershell"
                 source={require("raw!../assets/runningpods.cm")}
-                textSize="20px"
+                textSize="0.5em"
               />
             </Appear>
           </Slide>
           <Slide transition={["spin"]} bgImage={images.calmcat} bgDarken={0.5}>
-            <Heading size={1} fill caps textColor="tertiary">
+            <Heading fit caps textColor="tertiary">
               Scaling magic
             </Heading>
             <Appear fid="1">
               <CodePane
                 lang="shell"
                 source={require("raw!../assets/scaling_1.cm")}
-                textSize="20px"
+                textSize="0.35em"
               />
             </Appear>
           </Slide>
@@ -261,27 +273,29 @@ export default class Presentation extends React.Component {
               <CodePane
                 lang="yaml"
                 source={require("raw!../assets/autoscaler.yaml")}
-                margin="20px auto"
+                margin="5px auto"
+                textSize="0.5em"
               />
             </Appear>
             <Appear fid="2">
               <CodePane
                 lang="powershell"
                 source={require("raw!../assets/scaling_1b.cm")}
-                margin="20px auto"
+                margin="5px auto"
+                textSize="0.4em"
               />
             </Appear>
             <Appear fid="4">
-              <CodePane textSize={25} >
+              <CodePane lang="powershell" textSize="0.4em" margin="5px 0 0 0">
                 $ siege -d10 -c50 https://XXX
               </CodePane>
             </Appear>
           </Slide>
-          <Slide transition={["scale"]} bgImage={images.magicat} bgDarken={0.5} align="flex-start">
+          <Slide transition={["scale"]} bgImage={images.magicat} bgDarken={0.5}>
             <Appear fid="1">
               <CodePane
-                textSize="10px"
-                lang="shell"
+                textSize="0.3em"
+                lang="powersheel"
                 source={require("raw!../assets/scaling_2.cm")}
               />
             </Appear>
@@ -290,7 +304,7 @@ export default class Presentation extends React.Component {
             <Heading size={1} fill caps textColor="secondary">
               Monitoring
             </Heading>
-            <Image width="100%" margin="15px 15px 0 0" src={images.monitoring} />
+            <Image width="90%" margin="15px 15px 0 0" src={images.monitoring} />
           </Slide>
           <Slide transition={["fade", "zoom"]} bgImage={images.loggingbg} bgDarken={0.75}>
             <Heading size={1} fill caps textColor="secondary">
@@ -306,7 +320,7 @@ export default class Presentation extends React.Component {
           </Slide>
           <Slide transition={["zoom"]} bgImage={images.googlecl} bgDarken={0.5} bgColor="black">
             <BlockQuote>
-              <Quote>Don't worry, Google always makes it right!</Quote>
+              <Quote textColor="tertiary">Don't worry, Google always makes it right!</Quote>
               <Cite>Vincent Serpoul, December 2015</Cite>
             </BlockQuote>
           </Slide>
@@ -318,25 +332,25 @@ export default class Presentation extends React.Component {
               </BlockQuote>
             </Appear>
             <Appear fid="2">
-              <Image width="80%" margin="15px 15px 0 0" src={images.kubestack1} />
+              <Image width="60%" margin="5px 5px" src={images.kubestack1} />
             </Appear>
             <Appear fid="3">
-              <Image width="80%" margin="15px 15px 0 0" src={images.kubestack2} />
+              <Image width="60%" margin="5px 5px" src={images.kubestack2} />
             </Appear>
           </Slide>
-          <Slide transition={["zoom"]} bgImage={images.brokenheart} bgDarken={0.5}>
+          <Slide transition={["zoom"]} bgImage={images.brokenheart} bgPosition="0 0" bgRepeat="no-repeat" bgDarken={0.5}>
             <Heading size={1} fill caps textColor="secondary">
               Issues
             </Heading>
             <List>
-              <Appear><ListItem>Firewall/Networking not synced with the rest</ListItem></Appear>
+              <Appear><ListItem>Firewall/Networking (desync, security)</ListItem></Appear>
               <Appear><ListItem>Price for a small setup</ListItem></Appear>
             </List>
           </Slide>
           <Slide transition={["fade"]} bgImage={images.kubend} bgDarken={0.3}>
-            <Heading size={1} fill caps textColor="primary">the end</Heading>
-            <Heading size={1} fill caps textColor="secondary">questions?</Heading>
-            <Heading size={1} fit caps textColor="tertiary">you can find the prez here: kuberneprez.surge.sh</Heading>
+            <Heading fit caps textColor="primary">the end</Heading>
+            <Heading fit caps textColor="secondary">questions?</Heading>
+            <Heading fit caps textColor="ternary">you can find the prez here: kuberneprez.surge.sh</Heading>
           </Slide>
         </Deck>
       </Spectacle>

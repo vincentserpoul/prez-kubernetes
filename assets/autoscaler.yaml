@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: nutsphpfpm7
+  name: nutsphpfpm7_a
   namespace: default
 spec:
   scaleRef:
