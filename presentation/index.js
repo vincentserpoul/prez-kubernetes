@@ -99,7 +99,7 @@ export default class Presentation extends React.Component {
               with <Image width="8%" margin="0" src={images.GKELogo} />
             </Heading>
           </Slide>
-          <Slide transition={["zoom", "slide", "fade"]} bgColor="secondary">
+          <Slide transition={["zoom", "slide", "fade"]} bgColor="secondary" align="flex-start">
             <Heading size={1} fit caps lineHeight={1} textColor="black">
               the stack
             </Heading>
@@ -130,7 +130,7 @@ export default class Presentation extends React.Component {
               Step1 - create the cluster
             </Heading>
             <Appear fid="1">
-              <Heading fit textColor="secondary">
+              <Heading fit textColor="black">
                 Minimum size (no cheap setup)
               </Heading>
             </Appear>
@@ -160,7 +160,7 @@ export default class Presentation extends React.Component {
               </CodePane>
             </Appear>
             <Appear fid="2">
-              <Heading fit textColor="secondary">
+              <Heading fit textColor="black">
                 Free docker container registry
               </Heading>
             </Appear>
@@ -201,7 +201,7 @@ export default class Presentation extends React.Component {
               <CodePane
                 lang="yaml"
                 source={require("raw!../assets/redis-go-d.yaml")}
-                margin="20px auto"
+                textSize="15px"
               />
             </Appear>
             <Appear fid="2">
@@ -228,7 +228,7 @@ export default class Presentation extends React.Component {
               <CodePane
                 lang="shell"
                 source={require("raw!../assets/runningservices.cm")}
-                margin="20px auto"
+                textSize="20px"
               />
             </Appear>
           </Slide>
@@ -240,7 +240,7 @@ export default class Presentation extends React.Component {
               <CodePane
                 lang="shell"
                 source={require("raw!../assets/runningpods.cm")}
-                margin="20px auto"
+                textSize="20px"
               />
             </Appear>
           </Slide>
