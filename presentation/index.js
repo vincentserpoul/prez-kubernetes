@@ -201,7 +201,7 @@ export default class Presentation extends React.Component {
               <CodePane
                 lang="yaml"
                 source={require("raw!../assets/redis-go-d.yaml")}
-                textSize="15px"
+                textSize="8px"
               />
             </Appear>
             <Appear fid="2">
@@ -252,21 +252,21 @@ export default class Presentation extends React.Component {
               <CodePane
                 lang="shell"
                 source={require("raw!../assets/scaling_1.cm")}
-                margin="20px auto"
+                textSize="20px"
               />
             </Appear>
           </Slide>
-          <Slide transition={["spin"]} bgImage={images.magic} bgDarken={0.5} align="flex-start">
+          <Slide transition={["spin"]} bgImage={images.magic} bgDarken={0.5}>
             <Appear fid="1">
               <CodePane
-                lang="shell"
+                lang="yaml"
                 source={require("raw!../assets/autoscaler.yaml")}
                 margin="20px auto"
               />
             </Appear>
             <Appear fid="2">
               <CodePane
-                lang="shell"
+                lang="powershell"
                 source={require("raw!../assets/scaling_1b.cm")}
                 margin="20px auto"
               />
