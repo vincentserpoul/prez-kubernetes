@@ -207,7 +207,7 @@ export default class Presentation extends React.Component {
             align="top"
             lang="yaml"
             bgImage={images.redisLogo}
-            bgDarken={0.5}
+            bgDarken={0.8}
             bgColor="primary"
             code={require("raw!../assets/redis-go.yaml")}
             ranges={[
