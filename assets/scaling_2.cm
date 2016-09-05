@@ -1,9 +1,9 @@
 $ kubectl get nodes --watch
 NAME                                         STATUS    AGE
-gke-YOURCLUSTER-qa-default-pool-22aa7b7a-s2vk   Ready     40m
+gke-YOURCLUSTER-qa-default-pool-22ee7b7a-s2vk   Ready     40m
 ...
-gke-YOURCLUSTER-qa-default-pool-22aa7b7a-lwy2   Ready     1m
-gke-YOURCLUSTER-qa-default-pool-22aa7b7a-s2vk   Ready     45m
+gke-YOURCLUSTER-qa-default-pool-22ee7b7a-lwy2   Ready     1m
+gke-YOURCLUSTER-qa-default-pool-22ee7b7a-s2vk   Ready     45m
 
 $ kubectl get pods --watch
 NAME                                READY     STATUS    RESTARTS   AGE

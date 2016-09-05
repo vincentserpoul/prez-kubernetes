@@ -1,6 +1,15 @@
 // Import React
 import React from "react";
 
+import CodeSlide from 'spectacle-code-slide';
+
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-okaidia.css';
+import 'prismjs/components/prism-yaml.min.js';
+import 'prismjs/components/prism-powershell.min.js';
+
+Prism.highlightAll();
+
 // Import Spectacle Core tags
 import {
   Appear,
@@ -32,7 +41,6 @@ import createTheme from "spectacle/lib/themes/default";
 // Require CSS
 require("normalize.css");
 require("spectacle/lib/themes/default/index.css");
-
 
 const images = {
   kubernetes: require("../assets/kubernetes.svg"),
@@ -78,6 +86,16 @@ export default class Presentation extends React.Component {
     return (
       <Spectacle theme={theme}>
         <Deck transition={["zoom", "slide"]} transitionDuration={500}>
+          <Slide transition={["zoom"]} bgColor="primary">
+            <Image width="20%" src={images.kubernetes} /><br />
+            <Image width="50%" src={images.kubernetesName} />
+            <Heading size={2} fill caps textColor="black">
+              a tale of 4 months
+            </Heading>
+            <Heading size={3} fill textColor="secondary">
+              IRL with <Image width="8%" margin="0" src={images.GKELogo} />
+            </Heading>
+          </Slide>
           <Slide
             transition={["fade", "zoom"]}
             bgImage={images.reactLogo}
@@ -104,16 +122,6 @@ export default class Presentation extends React.Component {
                 ...there might be bugs (:
               </Heading>
             </Appear>
-          </Slide>
-          <Slide transition={["zoom"]} bgColor="primary">
-            <Image width="20%" src={images.kubernetes} /><br />
-            <Image width="50%" src={images.kubernetesName} />
-            <Heading size={2} fill caps textColor="black">
-              a tale of 4 months
-            </Heading>
-            <Heading size={3} fill textColor="secondary">
-              IRL with <Image width="8%" margin="0" src={images.GKELogo} />
-            </Heading>
           </Slide>
           <Slide transition={["zoom", "slide", "fade"]} bgColor="secondary">
             <Heading size={1} fill caps textColor="black">
@@ -191,47 +199,50 @@ export default class Presentation extends React.Component {
               Step3 - Create your services
             </Heading>
             <Heading textSize="50" fill textColor="tertiary">
-              example: redis
+              an example: redis
             </Heading>
-            <Appear fid="1">
-              <CodePane
-                lang="yaml"
-                source={require("raw!../assets/redis-go.yaml")}
-              />
-            </Appear>
-            <Appear fid="3">
-              <CodePane lang="powershell" textSize="0.6em" margin="5px 0 0 0">
-                kubectl apply -f redis-go.yaml
-              </CodePane>
-            </Appear>
           </Slide>
-          <Slide transition={["fade", "zoom"]} bgImage={images.redisLogo} bgDarken={0.5} bgColor="secondary">
-            <Heading size={1} fit caps textColor="secondary">
+          <CodeSlide
+            transition={["fade"]}
+            align="top"
+            lang="yaml"
+            bgImage={images.redisLogo}
+            bgDarken={0.5}
+            bgColor="primary"
+            code={require("raw!../assets/redis-go.yaml")}
+            ranges={[
+              { loc: [0, 11], title: "redis-go.yaml" },
+              { loc: [0, 2]},
+              { loc: [2, 5]},
+              { loc: [5, 11], note: "kubectl apply -f redis-go.yaml" }
+            ]}
+          />
+          <Slide transition={["spin", "zoom"]} bgDarken={0.5} bgColor="secondary">
+            <Heading size={1} fit caps textColor="primary">
               Step4 - Create your deployment
             </Heading>
-            <Appear fid="1">
-              <CodePane
-                lang="yaml"
-                source={require("raw!../assets/redis-go-d.yaml")}
-                textSize="0.3em"
-              />
-            </Appear>
-            <Appear fid="2">
-              <CodePane lang="powershell" textSize="0.5em" margin="5px 0 0 0">
-                gcloud compute disks create redis-go-disk --size 10GB
-              </CodePane>
-            </Appear>
-            <Appear fid="3">
-              <CodePane lang="powershell" textSize="0.5em" margin="5px 0 0 0">
-                kubectl apply -f redis-go_d.yaml
-              </CodePane>
-            </Appear>
-            <Appear fid="3">
-              <Heading fit textColor="tertiary">
-                Access from other pods through the simple "redis-go" name
-              </Heading>
-            </Appear>
           </Slide>
+          <CodeSlide
+            transition={["fade", "zoom"]}
+            align="top"
+            lang="yaml"
+            bgImage={images.redisLogo}
+            bgDarken={0.8}
+            bgColor="primary"
+            code={require("raw!../assets/redis-go-d.yaml")}
+            ranges={[
+              { loc: [0, 36], title: "redis-go-d.yaml" },
+              { loc: [0, 3]},
+              { loc: [3, 5]},
+              { loc: [5, 11]},
+              { loc: [11, 24]},
+              { loc: [24, 27]},
+              { loc: [27, 36]},
+              { loc: [27, 36], note: "gcloud compute disks create redis-go-disk --size 10GB" },
+              { loc: [0, 36], note: "kubectl apply -f redis-go_d.yaml" },
+              { loc: [0, 36], note: "Access from other pods through the simple `redis-go` name"}
+            ]}
+          />
           <Slide transition={["spin"]} bgImage={images.kubernetes} bgDarken={0.75} bgColor="primary">
             <Heading fit caps textColor="secondary">
               Services running
@@ -240,7 +251,7 @@ export default class Presentation extends React.Component {
               <CodePane
                 lang="powershell"
                 source={require("raw!../assets/runningservices.cm")}
-                textSize="0.4em"
+                textSize="0.5em"
               />
             </Appear>
           </Slide>
@@ -252,7 +263,7 @@ export default class Presentation extends React.Component {
               <CodePane
                 lang="powershell"
                 source={require("raw!../assets/runningpods.cm")}
-                textSize="0.5em"
+                textSize="0.6em"
               />
             </Appear>
           </Slide>
@@ -264,37 +275,45 @@ export default class Presentation extends React.Component {
               <CodePane
                 lang="shell"
                 source={require("raw!../assets/scaling_1.cm")}
-                textSize="0.35em"
+                textSize="0.45em"
               />
             </Appear>
           </Slide>
+
+          <CodeSlide
+            transition={["fade", "zoom"]}
+            align="top"
+            lang="yaml"
+            bgImage={images.magic}
+            bgDarken={0.7}
+            bgColor="primary"
+            code={require("raw!../assets/autoscaler.yaml")}
+            ranges={[
+              { loc: [0, 15], title: "autoscaler.yaml" },
+              { loc: [0, 2]},
+              { loc: [2, 5]},
+              { loc: [5, 15]}
+            ]}
+          />
           <Slide transition={["spin"]} bgImage={images.magic} bgDarken={0.5}>
             <Appear fid="1">
-              <CodePane
-                lang="yaml"
-                source={require("raw!../assets/autoscaler.yaml")}
-                margin="5px auto"
-                textSize="0.5em"
-              />
-            </Appear>
-            <Appear fid="2">
               <CodePane
                 lang="powershell"
                 source={require("raw!../assets/scaling_1b.cm")}
                 margin="5px auto"
-                textSize="0.4em"
+                textSize="0.5em"
               />
             </Appear>
             <Appear fid="4">
-              <CodePane lang="powershell" textSize="0.4em" margin="5px 0 0 0">
+              <CodePane lang="powershell" textSize="0.5em" margin="5px 0 0 0">
                 $ siege -d10 -c50 https://XXX
               </CodePane>
             </Appear>
           </Slide>
-          <Slide transition={["scale"]} bgImage={images.magicat} bgDarken={0.5}>
+          <Slide transition={["scale"]} bgImage={images.magicat} align="top" bgDarken={0.5}>
             <Appear fid="1">
               <CodePane
-                textSize="0.3em"
+                textSize="0.6em"
                 lang="powersheel"
                 source={require("raw!../assets/scaling_2.cm")}
               />
@@ -327,15 +346,27 @@ export default class Presentation extends React.Component {
           <Slide transition={["spin"]} align="flex-start" bgImage={images.horrified} bgDarken={0.5}>
             <Appear fid="1">
               <BlockQuote>
-                <Quote textColor="tertiary">Maybe not always :)</Quote>
-                <Cite>Vincent Serpoul, June 2015</Cite>
+                <Quote textColor="tertiary">NOPE :), but at least they're on stack overflow</Quote>
+                <Cite>Vincent Serpoul, Mar 2015</Cite>
               </BlockQuote>
             </Appear>
             <Appear fid="2">
               <Image width="60%" margin="5px 5px" src={images.kubestack1} />
             </Appear>
+            <Appear fid="2">
+              <BlockQuote>
+                <Quote textColor="tertiary">Thanks for bringing this up</Quote>
+                <Cite>Google Engineer on stackoverflow, Mar 2015</Cite>
+              </BlockQuote>
+            </Appear>
             <Appear fid="3">
               <Image width="60%" margin="5px 5px" src={images.kubestack2} />
+            </Appear>
+            <Appear fid="2">
+               <BlockQuote>
+                  <Quote textColor="tertiary">Thanks you for your patience</Quote>
+                  <Cite>Google Engineer on stackoverflow, Mar 2015</Cite>
+                </BlockQuote>
             </Appear>
           </Slide>
           <Slide transition={["zoom"]} bgImage={images.brokenheart} bgPosition="0 0" bgRepeat="no-repeat" bgDarken={0.5}>

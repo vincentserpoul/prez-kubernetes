@@ -5,11 +5,19 @@ spec:
   replicas: 1
   template:
     metadata:
-      labels: {environment: qa, name: redis-go, tier: backend}
+    - labels:
+        environment: qa
+        name: redis-go
+        tier: backend
     spec:
       containers:
-      - command: [redis-server, --appendonly yes, '--requirepass XPASSYO',
-          --maxmemory 230mb, --maxmemory-policy volatile-lru]
+      - command: [
+          redis-server,
+          --appendonly yes,
+          '--requirepass XPASSYO',
+          --maxmemory 230mb,
+          --maxmemory-policy volatile-lru
+        ]
         image: redis:3.2.1
         name: redis-go
         ports:
@@ -18,7 +26,10 @@ spec:
           limits: {cpu: 30m, memory: 256Mi}
           requests: {cpu: 30m, memory: 256Mi}
         volumeMounts:
-        - {mountPath: /var/lib/redis, name: redis-go-datastore}
+        - mountPath: /var/lib/redis
+          name: redis-go-datastore
       volumes:
-      - gcePersistentDisk: {fsType: ext4, pdName: redis-go-disk}
+      - gcePersistentDisk:
+        - fsType: ext4
+          pdName: redis-go-disk
         name: redis-go-datastore

@@ -1,6 +1,6 @@
 $ kubectl get nodes
 NAME                                         STATUS    AGE
-gke-YOURCLUSTER-default-pool-22aa7b7a-s2vk   Ready     5m
+gke-YOURCLUSTER-default-pool-22aeeb7a-s2vk   Ready     5m
 
 $ gcloud container clusters update YOURCLUSTER --enable-autoscaling --min-nodes=1 --max-nodes=15
 Updating YOURCLUSTER.../
