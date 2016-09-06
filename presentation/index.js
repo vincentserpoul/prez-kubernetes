@@ -45,6 +45,7 @@ require("spectacle/lib/themes/default/index.css");
 const images = {
   kubernetes: require("../assets/kubernetes.svg"),
   kubernetesName: require("../assets/kubernetes-name.svg"),
+  k8s: require("../assets/k8s.png"),
   GKELogo: require("../assets/gke-logo.png"),
   nginxLogo: require("../assets/nginxLogo.svg"),
   golangLogo: require("../assets/golangLogo.svg"),
@@ -194,11 +195,17 @@ export default class Presentation extends React.Component {
               </Heading>
             </Appear>
           </Slide>
+          <Slide transition={["fade"]} bgImage={images.kubernetes} bgDarken={0.5} bgColor="primary">
+            <Image fit src={images.k8s} width="100%" />
+          </Slide>
           <Slide transition={["spin"]} bgImage={images.redisLogo} bgDarken={0.5} bgColor="primary">
             <Heading size={1} fit caps textColor="secondary">
               Step3 - Create your services
             </Heading>
-            <Heading textSize="50" fill textColor="tertiary">
+            <Text textColor="tertiary">
+              a service defines a set of pods and a means by which to access them, such as single stable IP address and corresponding DNS name.
+            </Text>
+            <Heading textSize="50" fill textColor="secondary">
               an example: redis
             </Heading>
           </Slide>
@@ -211,16 +218,21 @@ export default class Presentation extends React.Component {
             bgColor="primary"
             code={require("raw!../assets/redis-go.yaml")}
             ranges={[
-              { loc: [0, 11], title: "redis-go.yaml" },
+              { loc: [0, 15], title: "redis-go.yaml" },
               { loc: [0, 2]},
               { loc: [2, 5]},
-              { loc: [5, 11], note: "kubectl apply -f redis-go.yaml" }
+              { loc: [5, 11]},
+              { loc: [11, 14]},
+              { loc: [14, 15], note: "kubectl apply -f redis-go.yaml" }
             ]}
           />
           <Slide transition={["spin", "zoom"]} bgDarken={0.5} bgColor="secondary">
             <Heading size={1} fit caps textColor="primary">
               Step4 - Create your deployment
             </Heading>
+            <Text color="secondary">
+              a deployment provides <b>declarative</b> updates for Pods and Replica Sets
+            </Text>
           </Slide>
           <CodeSlide
             transition={["fade", "zoom"]}
@@ -237,10 +249,11 @@ export default class Presentation extends React.Component {
               { loc: [5, 11]},
               { loc: [11, 24]},
               { loc: [24, 27]},
-              { loc: [27, 36]},
-              { loc: [27, 36], note: "gcloud compute disks create redis-go-disk --size 10GB" },
-              { loc: [0, 36], note: "kubectl apply -f redis-go_d.yaml" },
-              { loc: [0, 36], note: "Access from other pods through the simple `redis-go` name"}
+              { loc: [21, 22], note: "Access from other pods through the simple `redis-go` name"},
+              { loc: [35, 36], note: "gcloud compute disks create redis-go-disk --size 10GB"},
+              { loc: [30, 35]},
+              { loc: [27, 30]},
+              { loc: [35, 36], note: "kubectl apply -f redis-go_d.yaml" }
             ]}
           />
           <Slide transition={["spin"]} bgImage={images.kubernetes} bgDarken={0.75} bgColor="primary">
@@ -273,7 +286,7 @@ export default class Presentation extends React.Component {
             </Heading>
             <Appear fid="1">
               <CodePane
-                lang="shell"
+                lang="powershell"
                 source={require("raw!../assets/scaling_1.cm")}
                 textSize="0.45em"
               />
@@ -340,38 +353,34 @@ export default class Presentation extends React.Component {
           <Slide transition={["zoom"]} bgImage={images.googlecl} bgDarken={0.5} bgColor="black">
             <BlockQuote>
               <Quote textColor="tertiary">Don't worry, Google always makes it right!</Quote>
-              <Cite>Vincent Serpoul, December 2015</Cite>
+              <Cite>Should nobody say, EVER (I did)</Cite>
             </BlockQuote>
           </Slide>
           <Slide transition={["spin"]} align="flex-start" bgImage={images.horrified} bgDarken={0.5}>
             <Appear fid="1">
-              <BlockQuote>
-                <Quote textColor="tertiary">NOPE :), but at least they're on stack overflow</Quote>
-                <Cite>Vincent Serpoul, Mar 2015</Cite>
-              </BlockQuote>
-            </Appear>
-            <Appear fid="2">
               <Image width="60%" margin="5px 5px" src={images.kubestack1} />
             </Appear>
             <Appear fid="2">
+              <Image width="60%" margin="5px 5px" src={images.kubestack2} />
+            </Appear>
+          </Slide>
+          <Slide transition={["zoom"]} bgImage={images.kubestack2} bgDarken={0.8} bgColor="black">
+            <Appear fid="3">
               <BlockQuote>
                 <Quote textColor="tertiary">Thanks for bringing this up</Quote>
                 <Cite>Google Engineer on stackoverflow, Mar 2015</Cite>
               </BlockQuote>
             </Appear>
-            <Appear fid="3">
-              <Image width="60%" margin="5px 5px" src={images.kubestack2} />
-            </Appear>
-            <Appear fid="2">
+            <Appear fid="4">
                <BlockQuote>
-                  <Quote textColor="tertiary">Thanks you for your patience</Quote>
+                  <Quote textColor="tertiary">Thank you for patience</Quote>
                   <Cite>Google Engineer on stackoverflow, Mar 2015</Cite>
                 </BlockQuote>
             </Appear>
           </Slide>
           <Slide transition={["zoom"]} bgImage={images.brokenheart} bgPosition="0 0" bgRepeat="no-repeat" bgDarken={0.5}>
             <Heading size={1} fill caps textColor="secondary">
-              Issues
+              Issues (as of 1.2)
             </Heading>
             <List>
               <Appear><ListItem>Firewall/Networking (desync, security)</ListItem></Appear>
