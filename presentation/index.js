@@ -166,12 +166,17 @@ export default class Presentation extends React.Component {
             </Appear>
             <Appear fid="3">
               <CodePane lang="powershell" textSize="0.6em" margin="5px 0 0 0">
-                gcloud config set compute/zone asia-east1-c
+                gcloud container clusters create testkube --machine-type f1-micro --zone asia-east1-a
               </CodePane>
             </Appear>
             <Appear fid="4">
               <CodePane lang="powershell" textSize="0.6em" margin="5px 0 0 0">
-                gcloud container clusters get-credentials YOURCLUSTER
+                gcloud config set compute/zone asia-east1-a
+              </CodePane>
+            </Appear>
+            <Appear fid="5">
+              <CodePane lang="powershell" textSize="0.6em" margin="5px 0 0 0">
+                gcloud container clusters get-credentials testkube
               </CodePane>
             </Appear>
           </Slide>
